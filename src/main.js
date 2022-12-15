@@ -1,5 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const { time } = require("console");
 const crypto = require("crypto");
 const fs = require("fs");
 const moment = require("moment");
@@ -51,9 +52,9 @@ async function loadEntriesForYear(year) {
     const jackpot = convertJackpotRawToJackpot(jackpotRaw);
 
     results.push({
+      date: moment(timestamp).format("DD-MM-YYYY"),
       jackpot,
       numbers,
-      timestamp,
       ...(await loadDetailsForDate(moment(timestamp).format("DD-MMMM-YYYY"))),
     });
   }
