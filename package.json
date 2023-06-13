@@ -1,23 +1,24 @@
 {
-  "name": "my-data-science-project",
+  "name": "za-national-lottery-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "test": "node src/main.js"
+    "start": "node src/main.js",
+    "test": "node src/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hirebarend/my-data-science-project.git"
+    "url": "git+https://github.com/hirebarend/za-national-lottery-scraper.git"
   },
   "author": "Barend Erasmus",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hirebarend/my-data-science-project/issues"
+    "url": "https://github.com/hirebarend/za-national-lottery-scraper/issues"
   },
-  "homepage": "https://github.com/hirebarend/my-data-science-project#readme",
+  "homepage": "https://github.com/hirebarend/za-national-lottery-scraper#readme",
   "dependencies": {
-    "axios": "^1.2.1",
+    "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
     "moment": "^2.29.4"
   }

@@ -1,6 +1,5 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { time } = require("console");
 const crypto = require("crypto");
 const fs = require("fs");
 const moment = require("moment");
@@ -13,12 +12,12 @@ const {
 (async () => {
   let results = [];
 
-  for (let i = 2000; i <= 2022; i++) {
+  for (let i = 2000; i <= 2023; i++) {
     results = results.concat(await loadEntriesForYear(i));
 
     console.log(i);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
 
   fs.writeFileSync("data.json", JSON.stringify(results));
@@ -52,7 +51,7 @@ async function loadEntriesForYear(year) {
     const jackpot = convertJackpotRawToJackpot(jackpotRaw);
 
     results.push({
-      date: moment(timestamp).format("DD-MM-YYYY"),
+      date: moment(timestamp).format("YYYY-MM-DD"),
       jackpot,
       numbers,
       ...(await loadDetailsForDate(moment(timestamp).format("DD-MMMM-YYYY"))),
