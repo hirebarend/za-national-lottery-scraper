@@ -30,7 +30,7 @@ async function loadEntriesForYear(year) {
 
   const url = `https://za.national-lottery.com/lotto/results/${year}-archive`;
 
-  const html = await loadHtmlFromUrl(url);
+  const html = await loadHtmlFromUrl(year.toString(), url);
 
   const $ = cheerio.load(html);
 
@@ -64,7 +64,7 @@ async function loadEntriesForYear(year) {
 async function loadDetailsForDate(date) {
   const url = `https://za.national-lottery.com/lotto/results/${date}`;
 
-  const html = await loadHtmlFromUrl(url);
+  const html = await loadHtmlFromUrl(date, url);
 
   const $ = cheerio.load(html);
 
@@ -100,14 +100,14 @@ async function loadDetailsForDate(date) {
   };
 }
 
-async function loadHtmlFromUrl(url) {
+async function loadHtmlFromUrl(key, url) {
   if (!fs.existsSync(path.join(__dirname, "..", ".cache"))) {
     fs.mkdirSync(path.join(__dirname, "..", ".cache"));
   }
 
   const hash = crypto.createHash("md5").update(url).digest("hex");
 
-  const filename = path.join(__dirname, "..", ".cache", `${hash}.html`);
+  const filename = path.join(__dirname, "..", ".cache", `${key}-${hash}.html`);
 
   if (fs.existsSync(filename)) {
     return fs.readFileSync(filename, "utf-8");
